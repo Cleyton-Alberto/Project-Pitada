@@ -1,5 +1,5 @@
-import express, { json } from "express";
-import { revenuesRoutes } from "./routes/revenues.routes";
+import express from "express";
+import { revenuesRoutes } from "./routes/revenues.routes.js";
 import dotenv from "dotenv";
 
 dotenv.config({ quiet: true });
@@ -10,4 +10,4 @@ const port = process.env.PORT;
 app.use(express.json());
 app.use(revenuesRoutes);
 
-app.listen(port, () => console.log("Server Ok"));
+app.listen(port, () => console.log(`Sever Ok, Port: ${port}`));
