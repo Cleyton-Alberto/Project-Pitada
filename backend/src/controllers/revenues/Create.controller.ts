@@ -1,6 +1,5 @@
 import type { Request, RequestHandler, Response } from "express";
 import * as yup from "yup";
-import { StatusCode } from "../../shared/utils/StatusCode.js";
 import { validation } from "../../shared/middleware/validation.js";
 
 export interface IRevenues {
@@ -9,7 +8,7 @@ export interface IRevenues {
 }
 
 export interface IFilter {
-  filter: string;
+  filter?: string;
   // limit: number;
 }
 
@@ -23,8 +22,8 @@ export const createValidation = validation((getSchema) => ({
 
   query: getSchema<IFilter>(
     yup.object().shape({
-      filter: yup.string().required().min(3),
-    }),
+      filter: yup.string().optional().min(3),
+    }) as yup.ObjectSchema<IFilter>,
   ),
 }));
 
